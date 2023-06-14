@@ -1,5 +1,6 @@
 package org.example;
 
+import java.security.InvalidParameterException;
 import java.util.Objects;
 
 import lombok.*;
@@ -36,32 +37,27 @@ public class Athlete {
      */
     public boolean checkShootingFields() {
         if ((firstShootingRange == null || firstShootingRange.isEmpty()) || (secondShootingRange == null || secondShootingRange.isEmpty()) || (thirdShootingRange == null || thirdShootingRange.isEmpty())) {
-            System.out.println("The shooting range is null or empty! Please add a real value");
-            return false;
+            throw new InvalidParameterException("The shooting range is null or empty! Please add a real value");
         }
         if (firstShootingRange.length() != 5 || secondShootingRange.length() != 5 || thirdShootingRange.length() != 5) {
-            System.out.println("The value must have 5 characters");
-            return false;
+            throw new InvalidParameterException("The value must have 5 characters");
         }
         for (int i = 0; i < firstShootingRange.length(); i++) {
             char c = firstShootingRange.charAt(i);
             if (c != 'x' && c != 'o') {
-                System.out.println("The first string must contain only x or o");
-                return false;
+                throw new InvalidParameterException("The first string must contain only x or o");
             }
         }
         for (int i = 0; i < secondShootingRange.length(); i++) {
             char c = secondShootingRange.charAt(i);
             if (c != 'x' && c != 'o') {
-                System.out.println("The second string must contain only x or o");
-                return false;
+                throw new InvalidParameterException("The second string must contain only x or o");
             }
         }
         for (int i = 0; i < thirdShootingRange.length(); i++) {
             char c = thirdShootingRange.charAt(i);
             if (c != 'x' && c != 'o') {
-                System.out.println("The third string must contain only x or o");
-                return false;
+                throw new InvalidParameterException("The third string must contain only x or o");
             }
         }
         return true;
@@ -103,7 +99,7 @@ public class Athlete {
     }
 
     /**
-     * This method is helpful in the FileWriterr class, where the format of the output is
+     * This method is helpful in the FileHandler class, where the format of the output is
      * 30:27(initial minutes and seconds) + 30(penalties).
      * In our case, this method calculates the penalties.
      */

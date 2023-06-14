@@ -2,6 +2,8 @@ package org.example;
 
 import junit.framework.TestCase;
 
+import java.security.InvalidParameterException;
+
 public class AthleteTest extends TestCase {
 
     public void testGetBonusTime() {
@@ -33,6 +35,7 @@ public class AthleteTest extends TestCase {
         athlete.setThirdShootingRange("xxoxx");
         //then
         assertEquals("The shooting range is null or empty! Please add a real value!", athlete.getOccurrenceCount(), -1.0);
+       // assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
     public void testGetOccurrenceCount3() {

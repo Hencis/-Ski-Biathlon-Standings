@@ -1,8 +1,7 @@
 package org.example;
 import junit.framework.TestCase;
-import static org.example.FileOpener.createAthleteFromStrings;
 
-public class FileOpenerTest extends TestCase {
+public class FileHandlerTest extends TestCase {
 
     public void testCreateAthleteFromStrings() {
         //given
@@ -17,7 +16,7 @@ public class FileOpenerTest extends TestCase {
                 "xxxxx",
                 "xxxxxxxxxxxxxxx");
 
-        Athlete athleteFromStrings = createAthleteFromStrings(input);
+        Athlete athleteFromStrings = FileHandler.createAthleteFromStrings(input);
         //then
         assertEquals(athlete, athleteFromStrings);
     }
