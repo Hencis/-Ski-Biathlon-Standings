@@ -1,8 +1,12 @@
 package org.example;
-import junit.framework.TestCase;
 
-public class FileHandlerTest extends TestCase {
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class FileHandlerTest {
+
+    @Test
     public void testCreateAthleteFromStrings() {
         //given
         String[] input = {"1", "John Smith", "US", "29:15", "xxxxx", "xxxxx", "xxxxx" };

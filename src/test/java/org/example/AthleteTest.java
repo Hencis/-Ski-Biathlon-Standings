@@ -1,11 +1,14 @@
 package org.example;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
 
-public class AthleteTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+public class AthleteTest {
+    @Test
     public void testGetBonusTime() {
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xxxxx", "xxxxx", "xooxxxxxxxxxxxx");
 
@@ -15,6 +18,7 @@ public class AthleteTest extends TestCase {
         assertEquals(20, Double.parseDouble(penaltySeconds), 0.00001);
     }
 
+    @Test
     public void testGetOccurrenceCount1() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -26,6 +30,7 @@ public class AthleteTest extends TestCase {
         assertEquals(3.0, athlete.getOccurrenceCount(), 0.00001);
     }
 
+    @Test
     public void testGetOccurrenceCount2() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -34,10 +39,11 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange("xxoxx");
         athlete.setThirdShootingRange("xxoxx");
         //then
-        assertEquals("The shooting range is null or empty! Please add a real value!", athlete.getOccurrenceCount(), -1.0);
-       // assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
+
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testGetOccurrenceCount3() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -46,9 +52,10 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange("xxoxx");
         athlete.setThirdShootingRange("xxoxx");
         //then
-        assertEquals("The value must have 5 characters!", athlete.getOccurrenceCount(), -1.0);
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testGetOccurrenceCount4() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -57,9 +64,10 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange("xxox");
         athlete.setThirdShootingRange("xxoxx");
         //then
-        assertEquals("The value must have 5 characters!", athlete.getOccurrenceCount(), -1.0);
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testGetOccurrenceCount5() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -68,9 +76,10 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange("xxoxx");
         athlete.setThirdShootingRange("xxox");
         //then
-        assertEquals("The value must have 5 characters!", athlete.getOccurrenceCount(), -1.0);
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testGetOccurrenceCount6() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -79,9 +88,10 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange(null);
         athlete.setThirdShootingRange("xxoxx");
         //then
-        assertEquals("The shooting range is null or empty! Please add a real value!", athlete.getOccurrenceCount(), -1.0);
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testGetOccurrenceCount7() {
         //given
         Athlete athlete = new Athlete("1", "John", "UK", "30:15", "xooxx", "xoxxx", "xoxxx", "xooxxxxxxoxoxxx");
@@ -90,9 +100,10 @@ public class AthleteTest extends TestCase {
         athlete.setSecondShootingRange("xxoxx");
         athlete.setThirdShootingRange("");
         //then
-        assertEquals("The shooting range is null or empty! Please add a real value!", athlete.getOccurrenceCount(), -1.0);
+        assertThrows(InvalidParameterException.class, athlete::getOccurrenceCount);
     }
 
+    @Test
     public void testTimeSplit() {
         Athlete athlete = new Athlete("1", "John", "UK", null, "xooxx", "xxxxx", "xxxxx", "xooxxxxxxxxxxxx");
         athlete.setSkiTimeResult("30:21");
